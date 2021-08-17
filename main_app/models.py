@@ -37,3 +37,6 @@ class Feeding(models.Model):
   def __str__(self):
     # Nice method for obtaining the friendly of a Field.choice
     return f'{self.get_meal_display()} on {self.date}'
+
+  class Meta:
+    ordering = ['-date']
