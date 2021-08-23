@@ -7,6 +7,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+import json
+from django.http.response import JsonResponse
 
 class CatCreate(CreateView):
   model = Cat
@@ -113,3 +115,14 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+def demo_json(request):
+  print('method -> ', request.method)
+  print('body -> ', request.body)
+  data = json.loads(request.body)
+  print('data -> ', data)
+  data['owner'] = 'Lester'
+  print('updated data -> ', data)
+  print('json updated data -> ', type(json.dumps(data)))
+  return JsonResponse(data)

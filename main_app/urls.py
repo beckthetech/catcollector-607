@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
   path('', views.home, name='home'),
@@ -17,5 +18,7 @@ urlpatterns = [
   path('toys/<int:pk>/delete/', views.ToyDelete.as_view(), name='toys_delete'),
   # associate a toy with a cat
   path('cats/<int:cat_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
-  path('accounts/signup/', views.signup, name='signup')
+  path('accounts/signup/', views.signup, name='signup'),
+  # receive and respond with json
+  path('api/demo', csrf_exempt(views.demo_json), name='demo_json')
 ]
