@@ -125,3 +125,7 @@ LOGIN_REDIRECT_URL = '/cats/'
 
 # Add this variable to specify where logging out redirects to
 LOGOUT_REDIRECT_URL = '/'
+
+# Configure Django App for Heroku
+import django_heroku
+django_heroku.settings(locals())
